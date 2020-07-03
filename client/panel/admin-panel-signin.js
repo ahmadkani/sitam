@@ -70,7 +70,7 @@ export default function adminSignin(props) {
 
   const {redirectToReferrer} = values
     if (redirectToReferrer) {
-      return (<Redirect to='/@UFZPA&#eGn,Y7!Zj'/>)
+      return (<Redirect to='/JKaf89231FHjfkJ'/>)
   }
 
   return (

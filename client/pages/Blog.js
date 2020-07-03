@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player'
+import DownloadLink from "react-download-link";
 import IconButton from '@material-ui/core/IconButton'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import DownloadLink from "react-download-link";
-
 
 
 const Blog = () => {
@@ -16,7 +15,7 @@ const Blog = () => {
     <div className='player-wrapper'>
     <ReactPlayer
     className='react-player fixed-bottom'
-    url= 'Mabel.ogg'
+    url= './../assets/Videos/Mabel.ogg'
     width='100%'
     height='100%'
     controls = {true}

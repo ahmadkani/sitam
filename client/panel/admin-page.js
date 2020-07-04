@@ -14,6 +14,8 @@ import {Link} from 'react-router-dom'
 import {getAll} from './api-admin.js'
 import auth from './../auth/auth-helper'
 import ViewIcon from '@material-ui/icons/Visibility'
+import {remove} from './../user/api-user.js'
+
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -49,8 +51,10 @@ export default function Blog() {
       users: []
     })
 
+    const jwt = auth.isAuthenticated()
+      
+      
 
-    
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -69,9 +73,27 @@ export default function Blog() {
 
   }, [])
 
+  const deleteAccount = (user) => { 
+    if (jwt['user']['role'] == '1') 
+      remove({
+        userId: user
+      }, {t: jwt.token}).then((data) => {
+        if (data && data.error) {
+          console.log(data.error)
+        } else {
+          auth.clearJWT(() => console.log('deleted'))
+          setRedirect(true)
+        }
+      })
+    else 
+      alert('مشکلی هست .')
+  }
 
-    const clickFollow = (user, index) => {
-        if(confirm("آیا از حذف کاربر مطمئن هستید ؟")){alert("کاربر حذف شد")}
+
+    const clickDelete = (user, index) => {
+      console.log('object' , user._id)
+        if(confirm("آیا از حذف کاربر مطمئن هستید ؟")){deleteAccount(user._id)}
+        else({})
     }
 
 
@@ -92,7 +114,7 @@ export default function Blog() {
                           <ViewIcon/>
                         </IconButton>
                       </Link>
-                      <Button aria-label="Delete" variant="contained" color="red" onClick={()=> {clickFollow()}}>
+                      <Button aria-label="Delete" variant="contained" color="red" onClick={()=> {clickDelete(item, i)}}>
                         حذف کاربر
                       </Button>
                     </ListItemSecondaryAction>

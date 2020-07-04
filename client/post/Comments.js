@@ -92,7 +92,7 @@ export default function Comments (props) {
           {item.text}
           <span className={classes.commentDate}> 
             {jdate.format('dddd DD MMMM YYYY')} |
-            {auth.isAuthenticated().user._id === item.postedBy._id &&
+            {((auth.isAuthenticated().user._id === item.postedBy._id) ||  (auth.isAuthenticated().user.role === '1'))  &&
               <Icon onClick={deleteComment(item)} className={classes.commentDelete}><DeleteIcon fontSize="small"/></Icon> }
           </span>
         </p>

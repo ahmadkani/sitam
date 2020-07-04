@@ -15,13 +15,22 @@ import {getAll} from './api-admin.js'
 import auth from './../auth/auth-helper'
 import ViewIcon from '@material-ui/icons/Visibility'
 import {remove} from './../user/api-user.js'
-
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
-  root: theme.mixins.gutters({
+  root: {
     padding: theme.spacing(1),
-    margin: 0
-  }),
+    margin: 0,
+    width: '100%'
+  },
+  accordion: {
+    padding: theme.spacing(5),
+    margin: 0,
+    width: '200%'
+  },
   title: {
     margin: `${theme.spacing(3)}px ${theme.spacing(1)}px ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
@@ -38,7 +47,11 @@ const useStyles = makeStyles(theme => ({
   },
   viewButton: {
     verticalAlign: 'middle'
-  }
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
 }))
 
 export default function Blog() {
@@ -97,11 +110,19 @@ export default function Blog() {
     }
 
 
-      return (<div>
-        <Paper className={classes.root} elevation={4}>
-          <Typography type="title" className={classes.title}>
-            چه کسی را دنبال کنم ؟
-          </Typography>
+      return (<div className={classes.root}>
+        <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+        <Typography className={classes.heading}>مدیریت کاربران</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          <div>
+          <Paper className={classes.accordion} elevation={4}>
           <List>
             {values.users.map((item, i) => {
                 return <span key={i}>
@@ -127,6 +148,56 @@ export default function Blog() {
             }
           </List>
         </Paper>
+        </div>
+        </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+
+
+
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+        <Typography className={classes.heading}>مدیریت نظرات</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          <div>
+          <Paper className={classes.accordion} elevation={4}>
+          <List>
+            {values.users.map((item, i) => {
+                return <span key={i}>
+                  <ListItem>
+  
+                    <ListItemText primary={item.name}/>
+                    <ListItemSecondaryAction className={classes.follow}>
+                      <Link to={"/user/" + item._id}>
+                        <IconButton variant="contained" color="secondary" className={classes.viewButton}>
+                          <ViewIcon/>
+                        </IconButton>
+                      </Link>
+                      <Button aria-label="Delete" variant="contained" color="red" onClick={()=> {clickDelete(item, i)}}>
+                        حذف کاربر
+                      </Button>
+                    </ListItemSecondaryAction>
+                    <ListItemAvatar  style={{margin:'5px'}} className={classes.avatar}>
+                      <Avatar src={'/api/users/photo/'+item._id}/>
+                    </ListItemAvatar>
+                  </ListItem>
+                </span>
+              })
+            }
+          </List>
+        </Paper>
+        </div>
+        </Typography>
+        </AccordionDetails>
+      </Accordion>
+
 
 
       </div>)

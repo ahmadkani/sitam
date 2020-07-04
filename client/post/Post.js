@@ -17,7 +17,12 @@ import {makeStyles} from '@material-ui/core/styles'
 import {Link} from 'react-router-dom'
 import {remove, like, unlike} from './api-post.js'
 import Comments from './Comments'
-
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Button from '@material-ui/core/Button'
 
 const JDate = require('jalali-date');
 
@@ -54,6 +59,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Post (props){
+
+  const [open, setOpen] = useState(false)
   const classes = useStyles()
   const jwt = auth.isAuthenticated()
   const checkLike = (likes) => {
@@ -91,6 +98,11 @@ export default function Post (props){
     setValues({...values, comments: comments})
   }
 
+
+  const clickButton = () => {
+    setOpen(true)
+  }
+
   const deletePost = () => {   
     remove({
       postId: props.post._id
@@ -100,10 +112,22 @@ export default function Post (props){
       if (data.error) {
         console.log(data.error)
       } else {
-        props.onRemove(props.post)
+          props.onRemove(props.post);
       }
     })
   }
+
+  const onDelete = () => {
+    deletePost()
+    handleRequestClose()
+  }
+  
+
+  const handleRequestClose = () => {
+    setOpen(false)
+  }
+
+
   const jdate = new JDate(new Date(props.post.created))
 
     return (
@@ -113,14 +137,31 @@ export default function Post (props){
               <Avatar style={{margin:'5px'}} src={'/api/users/photo/'+props.post.postedBy._id}/>
             }
             action={((props.post.postedBy._id === auth.isAuthenticated().user._id) || (auth.isAuthenticated().user.role === '1')) &&
-              <IconButton onClick={deletePost}>
+              <IconButton onClick={clickButton}>
                 <DeleteIcon />
-              </IconButton>
-            }
+              </IconButton>}
+            
             title={<Link to={"/user/" + props.post.postedBy._id}>{props.post.postedBy.name}</Link>}
             subheader={jdate.format('dddd DD MMMM YYYY')}
             className={classes.cardHeader}
           />
+          <Dialog open={open} onClose={handleRequestClose}>
+          <DialogTitle onClose={handleRequestClose}>{"حذف پست"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              از حذف پست مطمئن هستید ؟
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleRequestClose} color="primary">
+              لغو
+            </Button>
+            <Button onClick={onDelete} color="secondary" autoFocus="autoFocus">
+              بله
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <CardContent className={classes.cardContent}>
           <Typography component="p" className={classes.text}>
             {props.post.text}
@@ -133,6 +174,7 @@ export default function Post (props){
                 />
             </div>)}
         </CardContent>
+       
         <CardActions>
           { values.like
             ? <IconButton onClick={clickLike} className={classes.button} aria-label="Like" color="secondary">

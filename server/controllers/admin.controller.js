@@ -5,7 +5,7 @@ import expressJwt from 'express-jwt'
 
 const adminsignin = async (req, res) => {
     try {
-      let user = {name : '1' , password : '1'}
+      let user = {name : config.admin_name , password : config.admin_pass}
       if (user.password !== (req.body.password ) || user.name !== (req.body.name)) {
         return res.status('401').send({
           error: "ادمین کی بودی تو؟"
@@ -14,7 +14,7 @@ const adminsignin = async (req, res) => {
 
   
       const token = jwt.sign({
-        _id: '32112323413253'
+        _id: config.admin_id
       }, config.jwtSecret)
   
       res.cookie("t", token, {
@@ -23,7 +23,7 @@ const adminsignin = async (req, res) => {
   
       return res.json({
         token,
-        user: {_id: '32112323413253', name: 'admin', email: '', role: '1'}
+        user: {_id: config.admin_id , name: config.admin_name , email: '', role: '1'}
       })
     } catch (err) {
       console.log(err)

@@ -2,6 +2,7 @@ import Post from '../models/post.model'
 import errorHandler from './../helpers/dbErrorHandler'
 import formidable from 'formidable'
 import fs from 'fs'
+import config from './../../config/config'
 
 const create = (req, res, next) => {
   let form = new formidable.IncomingForm()
@@ -147,7 +148,7 @@ const uncomment = async (req, res) => {
 }
 
 const isPoster = (req, res, next) => {
-  let isPoster = (req.post && req.auth && req.post.postedBy._id == req.auth._id) || (req.auth._id == '32112323413253')
+  let isPoster = (req.post && req.auth && req.post.postedBy._id == req.auth._id) || (req.auth._id == config.admin_id)
   if(!isPoster){
     return res.status('403').json({
       error: "User is not authorized"

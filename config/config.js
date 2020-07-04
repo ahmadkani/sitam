@@ -1,4 +1,7 @@
 const config = {
+  admin_id: '32112323413253',
+  admin_name: '1',
+  admin_pass: '1',
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT || 3000,
   jwtSecret: process.env.JWT_SECRET || "Jaghoor1Baghoor2",

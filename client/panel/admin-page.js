@@ -104,7 +104,7 @@ export default function Blog() {
 
 
     const clickDelete = (user, index) => {
-      console.log('object' , user._id)
+      console.log('user_id' , user._id)
         if(confirm("آیا از حذف کاربر مطمئن هستید ؟")){deleteAccount(user._id)}
         else({})
     }

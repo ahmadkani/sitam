@@ -77,7 +77,7 @@ export default function Comments (props) {
       if (data.error) {
         console.log(data.error)
       } else {
-        props.updateComments(data.comments)
+        if(confirm("از حذف نظر مطمئن هستید ؟")){props.updateComments(data.comments)}
       }
     })
   }

@@ -45,10 +45,10 @@ export default function DeleteUser(props) {
       </IconButton>
 
       <Dialog open={open} onClose={handleRequestClose}>
-        <DialogTitle>{"Delete Account"}</DialogTitle>
+        <DialogTitle >{"حذف حساب"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            مطمئنی میخوای حسابتو پاک کنی ؟
+            از حذف حساب مطمئن هستید ؟
           </DialogContentText>
         </DialogContent>
         <DialogActions>

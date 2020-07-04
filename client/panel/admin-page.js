@@ -71,7 +71,7 @@ export default function Blog() {
 
 
     const clickFollow = (user, index) => {
-        alert("Z")
+        if(confirm("آیا از حذف کاربر مطمئن هستید ؟")){alert("کاربر حذف شد")}
     }
 
 
@@ -81,9 +81,6 @@ export default function Blog() {
             چه کسی را دنبال کنم ؟
           </Typography>
           <List>
-          <Button aria-label="Delete" variant="contained" color="primary" onClick={()=> {clickFollow()}}>
-          دنبال کردن
-        </Button>
             {values.users.map((item, i) => {
                 return <span key={i}>
                   <ListItem>
@@ -95,8 +92,8 @@ export default function Blog() {
                           <ViewIcon/>
                         </IconButton>
                       </Link>
-                      <Button aria-label="Delete" variant="contained" color="primary" onClick={()=> {clickFollow()}}>
-                        دنبال کردن
+                      <Button aria-label="Delete" variant="contained" color="red" onClick={()=> {clickFollow()}}>
+                        حذف کاربر
                       </Button>
                     </ListItemSecondaryAction>
                     <ListItemAvatar  style={{margin:'5px'}} className={classes.avatar}>

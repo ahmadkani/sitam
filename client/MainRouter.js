@@ -24,7 +24,7 @@ const MainRouter = () => {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/admin" component={Admin}/>
-        <PrivateRoute2 path="/JKaf89231FHjfkJ" component={AdminPage}/> 
+        <Route path="/1" component={AdminPage}/> /*/JKaf89231FHjfkJ */
         <Route path="/Blog" component={Blog}/>
         <Route path="/AboutUs" component={AboutUs}/>
         <Route path="/Contact" component={Contact}/>

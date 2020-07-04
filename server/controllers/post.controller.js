@@ -9,7 +9,7 @@ const create = (req, res, next) => {
   form.parse(req, async (err, fields, files) => {
     if (err) {
       return res.status(400).json({
-        error: "Image could not be uploaded"
+        error: "تصویر آپلود نشد !"
       })
     }
     let post = new Post(fields)
@@ -40,7 +40,7 @@ const postByID = async (req, res, next, id) => {
     next()
   }catch(err){
     return res.status('400').json({
-      error: "Could not retrieve use post"
+      error: "کاربر یافت نشد !"
     })
   }
 }

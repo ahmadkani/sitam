@@ -26,4 +26,5 @@ const adminauth = {
   }
 }
 
+
 export default adminauth

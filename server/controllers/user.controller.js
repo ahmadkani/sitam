@@ -35,7 +35,7 @@ const userByID = async (req, res, next, id) => {
     next()
   } catch (err) {
     return res.status('400').json({
-      error: "Could not retrieve user"
+      error: "کاربر یافت نشد !"
     })
   }
 }
@@ -63,7 +63,7 @@ const update = (req, res) => {
   form.parse(req, async (err, fields, files) => {
     if (err) {
       return res.status(400).json({
-        error: "Photo could not be uploaded"
+        error: "تصویر آپلود نشد !"
       })
     }
     let user = req.profile
@@ -177,6 +177,9 @@ const findPeople = async (req, res) => {
     })
   }
 }
+
+
+
 
 export default {
   create,

@@ -8,4 +8,8 @@ router.route('/auth/adminsignin')
 router.route('/auth/adminsignout')
   .get(authCtrl.adminsignout)
 
+router.route('/api/admin/getall')
+  .get(authCtrl.getAll)
+
+
 export default router

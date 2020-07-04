@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken'
+import User from '../models/user.model'
 import config from './../../config/config'
+import expressJwt from 'express-jwt'
 
 const adminsignin = async (req, res) => {
     try {
@@ -39,9 +41,24 @@ const adminsignin = async (req, res) => {
     })
   }
 
+
+
+  const getAll = async (req, res) => {
+
+    try {
+    let users = await User.find({}).select('name')
+      res.json(users)
+    }catch(err){
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+  }
+  
   
   export default {
     adminsignin,
-    adminsignout
+    adminsignout,
+    getAll
   }
   

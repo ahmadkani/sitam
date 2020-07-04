@@ -48,6 +48,8 @@ export default function FindPeople() {
     followMessage: ''
   })
   const jwt = auth.isAuthenticated()
+  console.log('jwt', jwt)
+
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -64,12 +66,14 @@ export default function FindPeople() {
         setValues({...values, users:data})
       }
     })
+
     return function cleanup(){
       abortController.abort()
     }
 
   }, [])
   const clickFollow = (user, index) => {
+    
     follow({
       userId: jwt.user._id
     }, {
@@ -80,13 +84,16 @@ export default function FindPeople() {
       } else {
         let toFollow = values.users
         toFollow.splice(index, 1)
-        setValues({...values, users: toFollow, open: true, followMessage: `Following ${user.name}!`})
+        setValues({...values, users: toFollow, open: true, followMessage: `اکنون ${user.name} را دنبال میکنید`})
+
       }
     })
   }
   const handleRequestClose = (event, reason) => {
     setValues({...values, open: false })
   }
+
+
     return (<div>
       <Paper className={classes.root} elevation={4}>
         <Typography type="title" className={classes.title}>
@@ -94,11 +101,13 @@ export default function FindPeople() {
         </Typography>
         <List>
           {values.users.map((item, i) => {
+            
               return <span key={i}>
-                <ListItem>
+                <ListItem >
 
                   <ListItemText primary={item.name}/>
                   <ListItemSecondaryAction className={classes.follow}>
+                  {console.log('item' , item)}
                     <Link to={"/user/" + item._id}>
                       <IconButton variant="contained" color="secondary" className={classes.viewButton}>
                         <ViewIcon/>
@@ -128,4 +137,5 @@ export default function FindPeople() {
           message={<span className={classes.snack}>{values.followMessage}</span>}
       />
     </div>)
+
 }

@@ -223,11 +223,11 @@ export default function Blog() {
           <Table aria-label="contacts table">
           <TableHead>
           <TableRow className={classes.head}>
-              <TableCell className={classes.head} align="right">number/delete</TableCell>
-              <TableCell className={classes.head} align="right">name</TableCell>
-              <TableCell className={classes.head} align="right">email</TableCell>
-              <TableCell className={classes.head} align="right">subject</TableCell>
-              <TableCell className={classes.head} align="right">explanation</TableCell>
+              <TableCell className={classes.head} align="right">شماره/حذف</TableCell>
+              <TableCell className={classes.head} align="right">نام</TableCell>
+              <TableCell className={classes.head} align="right">ایمیل</TableCell>
+              <TableCell className={classes.head} align="right">موضوع</TableCell>
+              <TableCell className={classes.head} align="right">توضیح</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

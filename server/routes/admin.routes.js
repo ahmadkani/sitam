@@ -10,6 +10,8 @@ router.route('/auth/adminsignout')
 
 router.route('/api/admin/getall')
   .get(authCtrl.getAll)
-
-
+  
+router.route('/api/admin/getallContacts')
+  .get(authCtrl.getAllContacts)
+  
 export default router

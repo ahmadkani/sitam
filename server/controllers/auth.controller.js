@@ -11,12 +11,12 @@ const signin = async (req, res) => {
 
     if (!user)
       return res.status('401').json({
-        error: "User not found"
+        error: "کاربر یافت نشد"
       })
 
     if (!user.authenticate(req.body.password)) {
       return res.status('401').send({
-        error: "Email and password don't match."
+        error: "رمزعبور یا ایمیل درست نمی باشند"
       })
     }
 

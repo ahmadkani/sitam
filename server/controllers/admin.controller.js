@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/user.model'
+import Contact from '../models/contact.model'
 import config from './../../config/config'
-import expressJwt from 'express-jwt'
 
 const adminsignin = async (req, res) => {
     try {
@@ -42,7 +42,7 @@ const adminsignin = async (req, res) => {
   }
 
 
-
+//get all users and send it for admin
   const getAll = async (req, res) => {
 
     try {
@@ -56,11 +56,26 @@ const adminsignin = async (req, res) => {
   }
   
 
+  const getAllContacts = async (req, res) => {
+
+    try {
+    let contacts = await Contact.find({}, function (err, docs) {
+
+    });
+    console.log('object', contacts)
+      res.json(contacts)
+    }catch(err){
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+  }
   
   
   export default {
     adminsignin,
     adminsignout,
-    getAll
+    getAll,
+    getAllContacts
   }
   

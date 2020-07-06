@@ -6,8 +6,10 @@ import IconButton from '@material-ui/core/IconButton'
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import HomeIcon from '@material-ui/icons/Home'
 import Button from '@material-ui/core/Button'
+import AddBoxIcon from '@material-ui/icons/AddBox'
 import auth from './../auth/auth-helper'
 import {Link, withRouter} from 'react-router-dom'
+
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
@@ -82,6 +84,14 @@ const Menu = withRouter(({history}) => (
           <Button style={isActive(history, "/Contact")}>تماس با ما
           </Button>
           </Link>
+
+
+          <Link to="/media/new">
+          <Button style={isActive(history, "/media/new")}>
+            <AddBoxIcon style={{marginRight: '8px'}}/> Add Media
+          </Button>
+        </Link>
+
 
           <IconButton aria-label="Exit" color="inherit" onClick={() => {
               auth.clearJWT(() => history.push('/'))

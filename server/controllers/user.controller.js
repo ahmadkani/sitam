@@ -19,6 +19,19 @@ const create = async (req, res) => {
   }
 }
 
+
+const userByID1 = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || !user)
+      return res.status('400').json({
+        error: "User not found"
+      })
+    req.profile = user
+    next()
+  })
+}
+
+
 /**
  * Load user and append to req.
  */
@@ -194,5 +207,7 @@ export default {
   addFollower,
   removeFollowing,
   removeFollower,
-  findPeople
+  findPeople,
+  userByID1
 }
+

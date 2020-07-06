@@ -1,41 +1,56 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import Typography from '@material-ui/core/Typography'
+import MediaList from '../media/MediaList'
+import {listPopular} from '../media/api-media.js'
 import ReactPlayer from 'react-player'
-import DownloadLink from "react-download-link";
-import IconButton from '@material-ui/core/IconButton'
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 
-const Blog = () => {
-  
 
-  
-  return (
 
-    <div>
-    <div className='player-wrapper'>
-    <ReactPlayer
-    className='react-player fixed-bottom'
-    url= './../assets/Videos/Mabel.ogg'
-    width='100%'
-    height='100%'
-    controls = {true}
+const useStyles = makeStyles(theme => ({
+  card: {
+    margin: `${theme.spacing(5)}px 30px`
+  },
+  title: {
+    padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px 0px`,
+    color: theme.palette.text.secondary,
+    fontSize: '1em'
+  },
+  media: {
+    minHeight: 330
+  }
+}))
 
-    />
-    </div>
-    
-    <DownloadLink style={{'backgroundColor' : 'red'}}
-    label="دانلود فیلم"
-    filename="Mabel.ogg"
-    exportFile={() => "My cached data"}
-    ><button type="button" className="btn btn-info">Button</button></DownloadLink>
+export default function Blog(){
+  const classes = useStyles()
+  const [media, setMedia] = useState([])
 
-    </div>
-
-    
-
-  );
-
-};
-
-export default Blog;
-
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    listPopular(signal).then((data) => {
+      if (data.error) {
+        console.log(data.error)
+      } else {
+        setMedia(data)
+      }
+    })
+    return function cleanup(){
+      abortController.abort()
+    }
+  }, [])
+  return (<div>
+      <Card className={classes.card}>
+        <Typography variant="h2" className={classes.title}>
+          Popular Videos
+        </Typography>
+          <MediaList media={media}/>
+      </Card>
+      <ReactPlayer
+      controls='true'
+        url='/api/media/video/5f02eb603afd6d5650dc8521'/>
+        </div>
+        )
+}

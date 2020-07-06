@@ -15,10 +15,15 @@ import Contact from './pages/Contact'
 import Admin from './panel/admin-panel-signin'
 import AdminPage from './panel/admin-page.js'
 import PrivateRoute2 from './panel/adminPrivateRoute'
+import NewMedia from './media/NewMedia'
+import PlayMedia from './media/PlayMedia'
+import EditMedia from './media/EditMedia'
+
+
+const MainRouter = ({data}) => {
 
 
 
-const MainRouter = () => {
     return (<div>
       <Menu/>
       <Switch>
@@ -33,6 +38,12 @@ const MainRouter = () => {
         <Route path="/signin" component={Signin}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path="/user/:userId" component={Profile}/>
+        <PrivateRoute path="/media/new" component={NewMedia}/>
+        <PrivateRoute path="/media/edit/:mediaId" component={EditMedia}/>
+        <Route path="/media/:mediaId" render={(props) => (
+          <PlayMedia {...props} data={data} />
+      )} />
+        
       </Switch>
       <Footer/>
     </div>)

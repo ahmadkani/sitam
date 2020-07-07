@@ -108,7 +108,7 @@ export default function PlayMedia(props) {
                             color="primary"
                           />
                         }
-                        label={autoPlay ? 'Autoplay ON':'Autoplay OFF'}
+                        label={autoPlay ? 'پخش خودکار : روشن':'پخش خودکار : خاموش'}
                     />
                   <RelatedMedia media={relatedMedia}/>
                 </Grid>)

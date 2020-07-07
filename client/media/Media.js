@@ -17,6 +17,7 @@ import Divider from '@material-ui/core/Divider'
 import DeleteMedia from './DeleteMedia'
 import MediaPlayer from './MediaPlayer'
 
+
 const useStyles = makeStyles(theme => ({
   card: {
     padding:'20px'
@@ -49,7 +50,8 @@ export default function Media(props) {
       <CardHeader className={classes.header}
             title={props.media.title}
             action={
-              <span className={classes.action}>{props.media.views + ' views'}</span>
+              <span className={classes.action}>{props.media.views + ' views'}           
+              </span>
             }
             subheader={props.media.genre}
       />
@@ -63,7 +65,8 @@ export default function Media(props) {
           </ListItemAvatar>
           <ListItemText primary={props.media.postedBy.name}
                         secondary={"Published on " + (new Date(props.media.created)).toDateString()}/>
-          { (<ListItemSecondaryAction>
+          { auth.isAuthenticated() && auth.isAuthenticated()["user"]["role"] === '1' && (<span> 
+            <ListItemSecondaryAction>
 
                     <Link to={"/media/edit/" + props.media._id}>
                       <IconButton aria-label="Edit" color="secondary">
@@ -71,7 +74,7 @@ export default function Media(props) {
                       </IconButton>
                     </Link>
                     <DeleteMedia mediaId={props.media._id} mediaTitle={props.media.title}/>
-                  </ListItemSecondaryAction>)
+                  </ListItemSecondaryAction></span>)
           }
         </ListItem>
         <Divider/>

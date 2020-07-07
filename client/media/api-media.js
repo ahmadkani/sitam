@@ -1,4 +1,6 @@
 import config from '../../config/config'
+
+
 const create = async (params, credentials, media) => {
   try {
     let response = await fetch('/api/media/new/'+ params.userId, {

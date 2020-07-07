@@ -197,7 +197,10 @@ export default function MediaPlayer(props) {
         <IconButton color={loop? 'primary' : 'default'} onClick={onLoop}>
           <Icon>loop</Icon>
         </IconButton>
-        <IconButton color="primary" onClick={onClickFullscreen}>
+        <IconButton style={{color: '#753e5c'}} onClick={onClickDownload}>
+          <GetAppIcon  fontSize="large" />
+        </IconButton>
+        <IconButton color="primary" onClick={onClickFullscreen} style={{float: 'right', padding: '10px', color: '#b83423'}}>
           <Icon>fullscreen</Icon>
         </IconButton>
         <span style={{float: 'right', padding: '10px', color: '#b83423'}}>
@@ -207,9 +210,7 @@ export default function MediaPlayer(props) {
                         {format(duration)}
                     </time>
         </span>
-        <IconButton onClick={onClickDownload}>
-          <GetAppIcon  fontSize="large" />
-        </IconButton>
+
       </div>
     </div>
   )

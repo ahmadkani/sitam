@@ -44,18 +44,18 @@ export default function DeleteMedia(props) {
     </IconButton>
 
     <Dialog open={open} onClose={handleRequestClose}>
-      <DialogTitle>{"Delete "+props.mediaTitle}</DialogTitle>
+      <DialogTitle>{"حذف "+props.mediaTitle}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Confirm to delete {props.mediaTitle} from your account.
+          {props.mediaTitle} حذف شود؟
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleRequestClose} color="primary">
-          Cancel
+          لغو
         </Button>
         <Button onClick={deleteMedia} variant="contained" color="secondary" autoFocus="autoFocus">
-          Confirm
+          تایید
         </Button>
       </DialogActions>
     </Dialog>

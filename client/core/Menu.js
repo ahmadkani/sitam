@@ -86,13 +86,6 @@ const Menu = withRouter(({history}) => (
           </Link>
 
 
-          <Link to="/media/new">
-          <Button style={isActive(history, "/media/new")}>
-            <AddBoxIcon style={{marginRight: '8px'}}/> Add Media
-          </Button>
-        </Link>
-
-
           <IconButton aria-label="Exit" color="inherit" onClick={() => {
               auth.clearJWT(() => history.push('/'))
             }}><PowerSettingsNewIcon/></IconButton>
@@ -115,7 +108,7 @@ const Menu = withRouter(({history}) => (
           <Link to="/media/new">
           <Button style={isActive(history, "/media/new")}>
             <AddBoxIcon style={{marginRight: '8px'}}/>
-            <pre> فیلم</pre>
+            <pre><b> فیلم</b></pre>
           </Button>
         </Link>
 

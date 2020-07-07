@@ -10,6 +10,7 @@ import ReactPlayer from 'react-player'
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    width: '100%',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   gridList: {
     width: '100%',
     minHeight: 180,
-    padding: '0px 0 10px'
+    padding: '0px 100px 20px'
   },
   title: {
     padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,

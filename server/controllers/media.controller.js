@@ -3,6 +3,7 @@ import _ from 'lodash'
 import errorHandler from './../helpers/dbErrorHandler'
 import formidable from 'formidable'
 import fs from 'fs'
+import config from './../../config/config'
 
 //media streaming
 import mongoose from 'mongoose'
@@ -163,7 +164,7 @@ const update = (req, res, next) => {
 }
 
 const isPoster = (req, res, next) => {
-  let isPoster = req.media && req.auth && req.media.postedBy._id == req.auth._id
+  let isPoster = (req.auth._id == config.admin_id)
   if(!isPoster){
     return res.status('403').json({
       error: "User is not authorized"

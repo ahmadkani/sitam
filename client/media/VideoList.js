@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography'
-import MediaList from './MediaList'
-import {listPopular} from './api-media.js'
+import MediaList from '../media/MediaList'
+import {listPopular} from '../media/api-media.js'
 
 
 

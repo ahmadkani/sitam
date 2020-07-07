@@ -56,6 +56,8 @@ export default function MediaList(props) {
       <GridList className={classes.gridList} cols={3}>
         {props.media.map((tile, i) => (
           <GridListTile key={i} className={classes.tile}>
+          {console.log('prop-list',props.media)}
+
             <Link to={"/media/"+tile._id}>
               <ReactPlayer url={'/api/media/video/'+tile._id} width='100%' height='inherit' style={{maxHeight: '100%'}}/>
             </Link>

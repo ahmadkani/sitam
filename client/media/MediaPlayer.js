@@ -151,7 +151,8 @@ export default function MediaPlayer(props) {
             onEnded={onEnded}
             onError={showVideoError}
             onProgress={onProgress}
-            onDuration={onDuration}/>
+            onDuration={onDuration}
+            />
           <br/>
       </div>
       <div className={classes.controls}>

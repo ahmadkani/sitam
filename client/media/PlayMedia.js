@@ -93,7 +93,7 @@ export default function PlayMedia(props) {
     const nextUrl = relatedMedia.length > 0
           ? `/media/${relatedMedia[0]._id}` : ''
     return (
-      <div className={classes.root}>
+      <div className={classes.root} dir='ltr'>
         <Grid container spacing={8}>
           <Grid item xs={8} sm={8}>
             <Media media={media} nextUrl={nextUrl} handleAutoplay={handleAutoplay}/>

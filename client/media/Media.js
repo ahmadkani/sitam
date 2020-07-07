@@ -41,8 +41,7 @@ export default function Media(props) {
   const mediaUrl = props.media._id
         ? `/api/media/video/${props.media._id}`
         : null
-        console.log('props.media._id:', props.media._id)
-        {console.log('auth.isAuthenticated().user._id:', auth.isAuthenticated().user._id)}
+        console.log('mediaUrl:', mediaUrl)
         {console.log('props:', props)}
   const nextUrl = props.nextUrl
   return (
@@ -64,11 +63,8 @@ export default function Media(props) {
           </ListItemAvatar>
           <ListItemText primary={props.media.postedBy.name}
                         secondary={"Published on " + (new Date(props.media.created)).toDateString()}/>
-          { auth.isAuthenticated().user
-              && auth.isAuthenticated().user._id == props.media.postedBy._id
-              && (<ListItemSecondaryAction>
-                {console.log('auth.isAuthenticated().user._id:', auth.isAuthenticated().user._id)}
-                {console.log('props.media.postedBy._id:', props.media.postedBy._id)}
+          { (<ListItemSecondaryAction>
+
                     <Link to={"/media/edit/" + props.media._id}>
                       <IconButton aria-label="Edit" color="secondary">
                         <Edit/>

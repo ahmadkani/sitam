@@ -8,6 +8,8 @@ import {makeStyles} from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import GetAppIcon from '@material-ui/icons/GetApp';
+
 
 const useStyles = makeStyles(theme => ({
   flex:{
@@ -132,8 +134,20 @@ export default function MediaPlayer(props) {
     setVideoError(true)
   }
 
+  const onClickDownload = () =>{
+
+    var downloadLink = document.createElement("a");
+    downloadLink.href = props.srcUrl;
+    downloadLink.download = props.mediaName + ".mp4";
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    //window.location.replace(props.srcUrl)
+    }
+
   return (<div>
-    {videoError && <p className={classes.videoError}>Video Error. Try again later.</p>}
+    {videoError && <p className={classes.videoError}>ویدئو مشکل دارد، لطفا بعدا تلاش کنید.</p>}
       <div className={classes.flex}>
         
         <ReactPlayer
@@ -193,6 +207,9 @@ export default function MediaPlayer(props) {
                         {format(duration)}
                     </time>
         </span>
+        <IconButton onClick={onClickDownload}>
+          <GetAppIcon  fontSize="large" />
+        </IconButton>
       </div>
     </div>
   )
@@ -201,5 +218,6 @@ export default function MediaPlayer(props) {
 MediaPlayer.propTypes = {
   srcUrl: PropTypes.string,
   nextUrl: PropTypes.string,
-  handleAutoplay: PropTypes.func.isRequired
+  handleAutoplay: PropTypes.func.isRequired,
+  mediaName:PropTypes.string
 }

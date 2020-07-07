@@ -39,8 +39,8 @@ const Menu = withRouter(({history}) => (
             </Button>
           </Link>
 
-          <Link to="/Blog">
-          <Button style={isActive(history, "/Blog")}>بلاگ
+          <Link to="/VideoList">
+          <Button style={isActive(history, "/VideoList")}>فیلم ها
           </Button>
           </Link>
 
@@ -65,13 +65,13 @@ const Menu = withRouter(({history}) => (
         </span>)
       }
       {
-        auth.isAuthenticated() && (<span>
+        auth.isAuthenticated() && (auth.isAuthenticated()["user"]["role"] === '0') && (<span>
           <Link to={"/user/" + auth.isAuthenticated().user._id}>
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>صفحه من</Button>
           </Link>
 
-          <Link to="/Blog">
-          <Button style={isActive(history, "/Blog")}>بلاگ
+          <Link to="/VideoList">
+          <Button style={isActive(history, "/VideoList")}>فیلم ها
           </Button>
           </Link>
 
@@ -100,6 +100,32 @@ const Menu = withRouter(({history}) => (
         </span>)
       }
 
+
+      {
+        auth.isAuthenticated()  && (auth.isAuthenticated()["user"]["role"] === '1')  && (<span>
+
+
+          <Link to="/VideoList">
+          <Button style={isActive(history, "/VideoList")}>فیلم ها
+          </Button>
+          </Link>
+
+
+
+          <Link to="/media/new">
+          <Button style={isActive(history, "/media/new")}>
+            <AddBoxIcon style={{marginRight: '8px'}}/>
+            <pre> فیلم</pre>
+          </Button>
+        </Link>
+
+
+          <IconButton aria-label="Exit" color="inherit" onClick={() => {
+              auth.clearJWT(() => history.push('/'))
+            }}><PowerSettingsNewIcon/></IconButton>
+
+        </span>)
+      }
 
 
     </Toolbar>

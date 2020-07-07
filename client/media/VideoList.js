@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography'
-import MediaList from '../media/MediaList'
-import {listPopular} from '../media/api-media.js'
-import ReactPlayer from 'react-player'
+import MediaList from './MediaList'
+import {listPopular} from './api-media.js'
 
 
 
@@ -23,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Blog(){
+export default function VideoList(){
   const classes = useStyles()
   const [media, setMedia] = useState([])
 
@@ -48,9 +47,7 @@ export default function Blog(){
         </Typography>
           <MediaList media={media}/>
       </Card>
-      <ReactPlayer
-      controls='true'
-        url='/api/media/video/5f02eb603afd6d5650dc8521'/>
+
         </div>
         )
 }

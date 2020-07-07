@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
-import adminauth from './admin-auth-helper'
+import auth from './../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
 import {adminsignin} from './admin-helper.js'
 
@@ -56,7 +56,7 @@ export default function adminSignin(props) {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
-        adminauth.authenticate(data, () => {
+        auth.authenticate(data, () => {
           setValues({ ...values, error: '',redirectToReferrer: true})
         })
       }
@@ -70,7 +70,7 @@ export default function adminSignin(props) {
 
   const {redirectToReferrer} = values
     if (redirectToReferrer) {
-      return (<Redirect to='/1'/>) //JKaf89231FHjfkJ
+      return (<Redirect to='/AKJ34HAsdfkKJKJF7876FDKJqwrjxcbzx'/>) 
   }
 
   return (

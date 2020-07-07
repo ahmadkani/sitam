@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import adminauth from './admin-auth-helper.js'
+import auth from './../auth/auth-helper'
 
 const PrivateRoute2 = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    adminauth.isAuthenticated() ? (
+    auth.isAuthenticated() ? (
       <Component {...props}/>
     ) : (
       <Redirect to={{

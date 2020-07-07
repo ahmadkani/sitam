@@ -41,8 +41,8 @@ export default function Media(props) {
   const mediaUrl = props.media._id
         ? `/api/media/video/${props.media._id}`
         : null
-        console.log('mediaUrl:', mediaUrl)
-        {console.log('props:', props)}
+  const medName = props.media.title
+
   const nextUrl = props.nextUrl
   return (
     <Card className={classes.card}>
@@ -53,7 +53,7 @@ export default function Media(props) {
             }
             subheader={props.media.genre}
       />
-      <MediaPlayer srcUrl={mediaUrl} nextUrl={nextUrl} handleAutoplay={props.handleAutoplay}/>
+      <MediaPlayer srcUrl={mediaUrl} nextUrl={nextUrl} handleAutoplay={props.handleAutoplay} mediaName={medName}/>
       <List dense>
         <ListItem>
           <ListItemAvatar>

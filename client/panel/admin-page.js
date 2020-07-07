@@ -28,6 +28,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Box from '@material-ui/core/Box';
 
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(1),
@@ -75,7 +76,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Blog() {
+export default function adminPage() {
 
 
 
@@ -258,6 +259,37 @@ export default function Blog() {
         </Typography>
         </AccordionDetails>
       </Accordion>
+
+
+
+      <Accordion className={classes.root}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header" 
+      >
+      <Typography className={classes.heading}>مدیریت نظرات</Typography>
+      </AccordionSummary>
+      <AccordionDetails >
+        <Typography>
+        <div>
+        <Paper className={classes.accordion2} elevation={4}>
+        <List>
+
+        
+
+
+
+
+        </List>
+      </Paper>
+      </div>
+      </Typography>
+      </AccordionDetails>
+    </Accordion>
+
+
+
 
       </div>)
 

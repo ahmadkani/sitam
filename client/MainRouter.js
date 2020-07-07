@@ -9,7 +9,7 @@ import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import Footer from './core/Footer'
-import Blog from './pages/Blog'
+import VideoList from './media/VideoList'
 import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
 import Admin from './panel/admin-panel-signin'
@@ -29,8 +29,8 @@ const MainRouter = ({data}) => {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/admin" component={Admin}/>
-        <PrivateRoute2 path="/1" component={AdminPage}/> 
-        <Route path="/Blog" component={Blog}/>
+        <PrivateRoute2 path="/AKJ34HAsdfkKJKJF7876FDKJqwrjxcbzx" component={AdminPage}/> 
+        <Route path="/VideoList" component={VideoList}/>
         <Route path="/AboutUs" component={AboutUs}/>
         <Route path="/Contact" component={Contact}/>
         <Route path="/users" component={Users}/>
@@ -39,8 +39,8 @@ const MainRouter = ({data}) => {
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path="/user/:userId" component={Profile}/>
 
-        <PrivateRoute path="/media/new" component={NewMedia}/>
-        <PrivateRoute path="/media/edit/:mediaId" component={EditMedia}/>
+        <PrivateRoute2 path="/media/new" component={NewMedia}/>
+        <PrivateRoute2 path="/media/edit/:mediaId" component={EditMedia}/>
         <Route path="/media/:mediaId" render={(props) => (
           <PlayMedia {...props} data={data} />
       )} />

@@ -16,6 +16,8 @@ import auth from './../auth/auth-helper'
 import Snackbar from '@material-ui/core/Snackbar'
 import ViewIcon from '@material-ui/icons/Visibility'
 
+
+
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
@@ -41,6 +43,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function FindPeople() {
+
+  
+/*   const SecondaryActionWrapper = ({ ...props  }) => <ListItemSecondaryAction {...props} />
+  SecondaryActionWrapper.muiName = "ListItemSecondaryAction"; */
   const classes = useStyles()
   const [values, setValues] = useState({
     users: [],

@@ -240,7 +240,7 @@ export default function adminPage() {
                 <TableCell className={classes.follow} align="right">{item.name}</TableCell>
                 <TableCell className={classes.follow} align="right">{item.email}</TableCell>
                 <TableCell className={classes.follow} align="right">{item.subject}</TableCell>
-                <Box component="div" my={2} overflow="auto" className={classes.follow} align="right" style={{ width: 200, whiteSpace: 'nowrap' }}>
+                <Box my={2} overflow="auto" className={classes.follow} align="right" style={{ width: 200, whiteSpace: 'nowrap' }}>
                 {item.explanation}
                 </Box>
               </TableRow>

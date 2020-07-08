@@ -5,6 +5,8 @@ import formidable from 'formidable'
 import fs from 'fs'
 import config from './../../config/config'
 
+
+
 //media streaming
 import mongoose from 'mongoose'
 //import Grid from 'gridfs-stream'
@@ -19,6 +21,12 @@ mongoose.connection.on('connected', () => {
 })
 
 const create = (req, res, next) => {
+  const user = ({
+    _id: mongoose.Types.ObjectId(config.admin_id),
+    name: config.admin_name || undefined,
+    email: config.admin_email || undefined,
+    password: config.admin_pass || undefined })
+
   let form = new formidable.IncomingForm()
     form.keepExtensions = true
     form.parse(req, (err, fields, files) => {
@@ -28,7 +36,9 @@ const create = (req, res, next) => {
         })
       }
       let media = new Media(fields)
-      media.postedBy= req.profile
+      media.postedBy= user
+      console.log('media' , media)
+      console.log('user' , user)
       if(files.video){
         let writestream = gridfs.createWriteStream({_id: media._id})
         fs.createReadStream(files.video.path).pipe(writestream)

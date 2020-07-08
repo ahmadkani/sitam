@@ -4,6 +4,8 @@ import errorHandler from './../helpers/dbErrorHandler'
 import formidable from 'formidable'
 import fs from 'fs'
 import profileImage from './../../client/assets/images/profile-pic.png'
+import config from './../../config/config'
+
 
 const create = async (req, res) => {
   const user = new User(req.body)
@@ -21,15 +23,14 @@ const create = async (req, res) => {
 
 
 const userByID1 = (req, res, next, id) => {
-  User.findById(id).exec((err, user) => {
-    if (err || !user)
-      return res.status('400').json({
-        error: "User not found"
-      })
+    const user = new User ({
+    name: config.admin_name || undefined,
+    email: config.admin_email || undefined,
+    password: config.admin_pass || undefined })
     req.profile = user
     next()
-  })
-}
+  }
+
 
 
 /**

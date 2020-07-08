@@ -124,7 +124,6 @@ export default function adminPage() {
         console.log(data.error)
       } else {
         setCValues({...Cvalues, contacts:data})
-        console.log('contacts' , contacts)
       }
     })
 

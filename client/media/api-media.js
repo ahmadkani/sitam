@@ -3,7 +3,7 @@ import config from '../../config/config'
 
 const create = async (params, credentials, media) => {
   try {
-    let response = await fetch('/api/media/new/'+ params.userId, {
+    let response = await fetch('/api/media/new/' + config.admin_id, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -35,7 +35,7 @@ const listPopular = async (signal) => {
 
 const listByUser = async (params) => {
   try {
-    let response = await fetch('/api/media/by/'+ params.userId, {
+    let response = await fetch('/api/media/by/video', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

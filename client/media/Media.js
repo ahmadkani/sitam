@@ -16,7 +16,7 @@ import {Link} from 'react-router-dom'
 import Divider from '@material-ui/core/Divider'
 import DeleteMedia from './DeleteMedia'
 import MediaPlayer from './MediaPlayer'
-
+import config from './../../config/config'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -60,10 +60,10 @@ export default function Media(props) {
         <ListItem>
           <ListItemAvatar>
             <Avatar className={classes.avatar}>
-              {props.media.postedBy.name && props.media.postedBy.name[0]}
+              {config.admin_name}
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={props.media.postedBy.name}
+          <ListItemText primary={config.admin_name}
                         secondary={"Published on " + (new Date(props.media.created)).toDateString()}/>
           { auth.isAuthenticated() && auth.isAuthenticated()["user"]["role"] === '1' && (<span> 
             <ListItemSecondaryAction>

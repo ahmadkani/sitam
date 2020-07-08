@@ -5,7 +5,13 @@ import config from './../../config/config'
 
 const adminsignin = async (req, res) => {
     try {
-      let user = {name : config.admin_name , password : config.admin_pass}
+
+      const user = new User ({
+      name: config.admin_name || undefined,
+      email: config.admin_email || undefined,
+      password: config.admin_pass || undefined })
+
+
       if (user.password !== (req.body.password ) || user.name !== (req.body.name)) {
         return res.status('401').send({
           error: "ادمین کی بودی تو؟"

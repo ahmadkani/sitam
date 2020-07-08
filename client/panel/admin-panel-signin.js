@@ -82,7 +82,7 @@ export default function adminSignin(props) {
           <TextField dir="ltr" id="name" type="text" label="name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
           <TextField dir="ltr" id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
           <br/> {
-            values.error && (<Typography component="p" color="error">
+            values.error && (<Typography component={'span'} color="error">
               <Icon color="error" className={classes.error}>error</Icon>
               {values.error}
             </Typography>)

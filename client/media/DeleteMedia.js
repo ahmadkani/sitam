@@ -63,6 +63,6 @@ export default function DeleteMedia(props) {
 }
 
 DeleteMedia.propTypes = {
-  mediaId: PropTypes.string.isRequired,
-  mediaTitle: PropTypes.string.isRequired
+  mediaId: PropTypes.string,
+  mediaTitle: PropTypes.string
 }

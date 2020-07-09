@@ -35,7 +35,7 @@ const listPopular = async (signal) => {
 
 const listByUser = async (params) => {
   try {
-    let response = await fetch('/api/media/by/video', {
+    let response = await fetch('/api/media/by/'  + config.admin_id , {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

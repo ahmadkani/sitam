@@ -18,6 +18,7 @@ import PrivateRoute2 from './panel/adminPrivateRoute'
 import NewMedia from './media/NewMedia'
 import PlayMedia from './media/PlayMedia'
 import EditMedia from './media/EditMedia'
+import test from './pages/test'
 
 
 const MainRouter = ({data}) => {
@@ -32,6 +33,7 @@ const MainRouter = ({data}) => {
         <PrivateRoute2 path="/AKJ34HAsdfkKJKJF7876FDKJqwrjxcbzx" component={AdminPage}/> 
         <Route path="/VideoList" component={VideoList}/>
         <Route path="/AboutUs" component={AboutUs}/>
+        <Route path="/test" component={test}/>
         <Route path="/Contact" component={Contact}/>
         <Route path="/users" component={Users}/>
         <Route path="/signup" component={Signup}/>

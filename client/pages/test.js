@@ -1,31 +1,33 @@
 import React from 'react'
-import { useMediaQuery } from 'react-responsive'
+import MediaQuery from 'react-responsive'
  
-const test = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-device-width: 1224px)'
-  })
-  const isBigScreen = useMediaQuery({ query: '(min-device-width: 1824px)' })
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)'
-  })
-  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
-  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
- 
+export default function test() {
+
   return (
     <div>
-      <h1>Device Test!</h1>
-      {isDesktopOrLaptop && <>
-        <p>You are a desktop or laptop</p>
-        {isBigScreen && <p>You also have a huge screen</p>}
-        {isTabletOrMobile && <p>You are sized like a tablet or mobile phone though</p>}
-      </>}
-      {isTabletOrMobileDevice && <p>You are a tablet or mobile phone</p>}
-      <p>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</p>
-      {isRetina && <p>You are retina</p>}
-    </div>
+    <div>Device Test!</div>
+    <MediaQuery query='(min-device-width: 1224px)'>
+      <div>You are a desktop or laptop</div>
+      <MediaQuery query='(min-device-width: 1824px)'>
+        <div>You also have a huge screen</div>
+      </MediaQuery>
+      <MediaQuery query='(max-width: 1224px)'>
+        <div>You are sized like a tablet or mobile phone though</div>
+      </MediaQuery>
+    </MediaQuery>
+    <MediaQuery query='(max-device-width: 1224px)'>
+      <div>You are a tablet or mobile phone</div>
+    </MediaQuery>
+    <MediaQuery query='(orientation: portrait)'>
+      <div>You are portrait</div>
+    </MediaQuery>
+    <MediaQuery query='(orientation: landscape)'>
+      <div>You are landscape</div>
+    </MediaQuery>
+    <MediaQuery query='(min-resolution: 2dppx)'>
+      <div>You are retina</div>
+    </MediaQuery>
+  </div>
   )
 }
 
-export default test;

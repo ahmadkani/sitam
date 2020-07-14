@@ -69,6 +69,7 @@ export default function NewMedia(){
     }, {
       t: jwt.token
     }, mediaData).then((data) => {
+      console.log('data:', data)
       if (data.error) {
         setValues({...values, error: data.error})
       } else {

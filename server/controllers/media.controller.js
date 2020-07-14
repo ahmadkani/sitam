@@ -35,16 +35,39 @@ const create = (req, res, next) => {
           error: "Video could not be uploaded"
         })
       }
-      console.log('req:', req)
-      console.log('files:', files)
-      console.log('fields:', fields)
+
       let media = new Media(fields)
       media.postedBy= user
-      console.log('media' , media)
       if(files.video){
+        console.log('files.video:', files.video.size)
         let writestream = gridfs.createWriteStream({_id: media._id})
         fs.createReadStream(files.video.path).pipe(writestream)
+
+        var  readStream
+        var  buffer = ""
+
+        writestream.on("close", function () {
+          // read file, buffering data as we go
+          readStream = gridfs.createReadStream({_id: media._id});
+
+          readStream.on("data", function (chunk) {
+              buffer += chunk;
+              console.log(`Received ${100 * (buffer.length / parseInt(files.video.size))} bytes of data.`);
+            });
+        });
+
+
+
+        writestream.on('error', function (err) {
+    
+            console.log(err);
+        
+        });
+
       }
+
+
+
       media.save((err, result) => {
         if (err) {
           return res.status(400).json({
@@ -145,7 +168,6 @@ const listByUser = (req, res) => {
 }
 
 const read = (req, res) => {
-  console.log('req.media:', req.media)
   return res.json(req.media)
 }
 

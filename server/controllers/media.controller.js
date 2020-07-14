@@ -35,10 +35,12 @@ const create = (req, res, next) => {
           error: "Video could not be uploaded"
         })
       }
+      console.log('req:', req)
+      console.log('files:', files)
+      console.log('fields:', fields)
       let media = new Media(fields)
       media.postedBy= user
       console.log('media' , media)
-      console.log('user' , user)
       if(files.video){
         let writestream = gridfs.createWriteStream({_id: media._id})
         fs.createReadStream(files.video.path).pipe(writestream)

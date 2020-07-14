@@ -68,7 +68,6 @@ const adminsignin = async (req, res) => {
     let contacts = await Contact.find({}, function (err, docs) {
 
     });
-    console.log('object', contacts)
       res.json(contacts)
     }catch(err){
       return res.status(400).json({
